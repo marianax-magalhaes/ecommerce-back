@@ -1,9 +1,10 @@
-package com.deloitte.ecommerce.models;
+package com.deloitte.ecommerce.domain;
 
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Set;
 
 @Entity
@@ -12,7 +13,7 @@ import java.util.Set;
 //pelo jeito tem bug no @Data quando ha relacao de one to many
 @Getter
 @Setter
-public class ProductCategory {
+public class ProductCategory implements Serializable {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
