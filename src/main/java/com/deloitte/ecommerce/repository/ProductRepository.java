@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @CrossOrigin("http://localhost:4200")
 public interface ProductRepository extends JpaRepository<Product, Long> {
-
-    //    todo metodo "findby" é considerado como "query" que ja nos da endpoint com o mesmo nome do metodo: search/findByCategoryId?id=1
+//        todo metodo "findby" é considerado como "query" que ja nos da endpoint com o mesmo nome do metodo: search/findByCategoryId?id=1
 //    page é uma sublista
     Page<Product> findByCategoryId(@RequestParam("id") Long id, Pageable pageable);
+
+    Page<Product> findByNameContaining(@RequestParam("name") String name, Pageable pageable);
+
 }
