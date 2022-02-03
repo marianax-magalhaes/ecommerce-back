@@ -33,21 +33,21 @@ public class DataRestConfig implements RepositoryRestConfigurer {
 // aqui sim foi codado, desabilitando esses metodos para produo e categoria:
         HttpMethod[] theUnsupportedActions = {HttpMethod.PUT, HttpMethod.POST, HttpMethod.DELETE};
 
-        config.getExposureConfiguration()
-            .forDomainType(Product.class)
-            .withItemExposure((metdata, httpMethods)-> httpMethods.disable(theUnsupportedActions))
-            .withCollectionExposure((metdata, httpMethods)-> httpMethods.disable(theUnsupportedActions));
-
-        config.getExposureConfiguration()
-            .forDomainType(ProductCategory.class)
-            .withItemExposure((metdata, httpMethods)-> httpMethods.disable(theUnsupportedActions))
-            .withCollectionExposure((metdata, httpMethods)-> httpMethods.disable(theUnsupportedActions));
+        disableHttpMethods(Product.class, config, theUnsupportedActions);
+        disableHttpMethods(ProductCategory.class, config, theUnsupportedActions);
 
 // agra quando tentamos fazer um metodo post, por exemplo, aparece: 405 Method Not Allowed
-
-
-        //chamar metodo auxiliar para "expor" os ids
+// chamar metodo auxiliar para "expor" os ids
         exposeIds(config);
+    }
+
+//    metodo criado pois o cdg estava se repetindo. selecionando ele -> refactor -> extract method
+//    apenas alterarmos adicionando novo parametro classe e alterando a linha forDomainType
+    private void disableHttpMethods(Class theClass, RepositoryRestConfiguration config, HttpMethod[] theUnsupportedActions) {
+        config.getExposureConfiguration()
+            .forDomainType(theClass)
+            .withItemExposure((metdata, httpMethods)-> httpMethods.disable(theUnsupportedActions))
+            .withCollectionExposure((metdata, httpMethods)-> httpMethods.disable(theUnsupportedActions));
     }
 
     private void exposeIds(RepositoryRestConfiguration config){
