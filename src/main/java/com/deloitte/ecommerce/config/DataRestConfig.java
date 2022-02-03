@@ -1,7 +1,9 @@
 package com.deloitte.ecommerce.config;
 
+import com.deloitte.ecommerce.domain.Country;
 import com.deloitte.ecommerce.domain.Product;
 import com.deloitte.ecommerce.domain.ProductCategory;
+import com.deloitte.ecommerce.domain.State;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
@@ -35,6 +37,9 @@ public class DataRestConfig implements RepositoryRestConfigurer {
 
         disableHttpMethods(Product.class, config, theUnsupportedActions);
         disableHttpMethods(ProductCategory.class, config, theUnsupportedActions);
+
+        disableHttpMethods(Country.class, config, theUnsupportedActions);
+        disableHttpMethods(State.class, config, theUnsupportedActions);
 
 // agra quando tentamos fazer um metodo post, por exemplo, aparece: 405 Method Not Allowed
 // chamar metodo auxiliar para "expor" os ids
