@@ -28,7 +28,7 @@ public class Address {
     @Column(name="country")
     private String country;
 
-    @Column(name="zipcode")
+    @Column(name="zip_code")
     private String zipcode;
 
     @OneToOne

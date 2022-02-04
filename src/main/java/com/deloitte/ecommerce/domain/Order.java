@@ -37,7 +37,7 @@ public class Order {
     @CreationTimestamp
     private Date dateCreated;
 
-    @Column(name="last_uptdated")
+    @Column(name="last_updated")
     @UpdateTimestamp
     private Date lastUpdated;
 
