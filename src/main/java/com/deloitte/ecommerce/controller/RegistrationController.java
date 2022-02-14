@@ -13,7 +13,7 @@ public class RegistrationController {
     @Autowired
     private RegistrationService service;
 
-    @GetMapping("/registeruser")
+    @PostMapping("/registeruser")
     public Customer registerUser(@RequestBody Customer user) throws Exception {
         String tempEmail = user.getFirstName();
 
