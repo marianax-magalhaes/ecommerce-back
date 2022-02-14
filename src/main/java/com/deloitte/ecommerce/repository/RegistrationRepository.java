@@ -1,9 +1,9 @@
 package com.deloitte.ecommerce.repository;
 
-import com.deloitte.ecommerce.domain.Customer;
+import com.deloitte.ecommerce.domain.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface RegistrationRepository extends JpaRepository<Customer, Long> {
+public interface RegistrationRepository extends JpaRepository<User, Long> {
 
-    public Customer findByEmail(String email);
+    public User findByEmail(String email);
 }
