@@ -14,12 +14,15 @@ public class RegistrationController {
     private RegistrationService service;
 
     @GetMapping("/registeruser")
-    public Customer registerUser(@RequestBody Customer user){
+    public Customer registerUser(@RequestBody Customer user) throws Exception {
         String tempEmail = user.getFirstName();
 
 //        tbm verificar se o email ja nao existe na base
         if(tempEmail !=null && !"".equals(tempEmail)){
-
+            Customer userobj = service.fetchUserByEmail(tempEmail);
+            if(userobj !=null){
+                throw new Exception ("Esse e-mail já está cadastrado!");
+            }
         }
 
         Customer userObj = null;
