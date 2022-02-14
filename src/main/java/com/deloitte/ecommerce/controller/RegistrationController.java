@@ -29,4 +29,19 @@ public class RegistrationController {
         userObj = service.saveUser(user);
         return userObj;
     }
+
+    @PostMapping("/api/login")
+    public User login (@RequestBody User user) throws Exception {
+        String tempEmail = user.getEmail();
+        String tempPassword = user.getPassword();
+        User userobj = null;
+
+        if(tempEmail !=null && tempPassword !=null){
+            service.fetchUserByEmailAndPassword(tempEmail,tempPassword);
+        }
+        if(userobj==null){
+            throw new Exception("Usuário não existe!");
+        }
+        return userobj;
+    }
 }
