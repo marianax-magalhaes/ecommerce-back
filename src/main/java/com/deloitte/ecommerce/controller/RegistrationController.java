@@ -15,13 +15,13 @@ public class RegistrationController {
 
     @PostMapping("/api/registeruser")
     public User registerUser(@RequestBody User user) throws Exception {
-        String tempEmail = user.getFirstName();
+        String tempEmail = user.getEmail();
 
 //        tbm verificar se o email ja nao existe na base
         if(tempEmail !=null && !"".equals(tempEmail)){
             User userobj = service.fetchUserByEmail(tempEmail);
             if(userobj !=null){
-                throw new Exception ("Esse e-mail já está cadastrado!");
+                throw new Exception (("Esse e-mail já está cadastrado!"));
             }
         }
 
